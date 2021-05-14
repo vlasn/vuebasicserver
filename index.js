@@ -1,5 +1,7 @@
+const { PORT = 3000 } = process.env;
 const express = require('express');
 const app = express();
+
 
 app.use(require('body-parser').json());
 app.use(require('cors')());
@@ -15,6 +17,6 @@ app.post('/api/v1/cart', sessionController.new);
 app.get('/api/v1/cart/:id', sessionController.get)
 app.post('/api/v1/cart/:id', sessionController.modify);
 
-app.listen(3000, () => {
-    console.log('listening');
+app.listen(PORT, () => {
+    console.log('listening on port ' + PORT);
 });

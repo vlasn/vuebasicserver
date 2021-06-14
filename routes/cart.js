@@ -30,9 +30,9 @@ module.exports = {
         return res.status(404).send()
     },
     modify: (req, res) => {
-        const { params: { id }, body: { cart } } = req;
+        const { params: { id, newItemId } } = req;
         if (sessions[id]) {
-            sessions[id].cart = cart;
+            sessions[id].cart = [...sessions[id].cart, newItemId];
             save();
             return res.status(200).json(sessions[id].cart.map(items.getItem).filter(item => item))
         }
